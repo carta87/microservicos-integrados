@@ -1,0 +1,9 @@
+eureka:
+  client:
+    register-with-eureka: false
+
+spring:
+  application:
+    name: micro-service-api-getewa
+  config:
+    import: optional:configserver:http://localhost:8888
