@@ -1,9 +1,9 @@
 package com.microservice.course.service;
 
+import com.library.entidades.dto.StudentDTO;
+import com.library.entidades.http.response.StudentByCourseResponse;
+import com.library.entidades.jpa.entity.Course;
 import com.microservice.course.client.StudentClient;
-import com.microservice.course.dto.StudentDTO;
-import com.microservice.course.entities.Course;
-import com.microservice.course.htto.response.StudentByCourseResponse;
 import com.microservice.course.repository.ICourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

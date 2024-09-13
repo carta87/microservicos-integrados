@@ -1,6 +1,6 @@
 package com.microservice.course.controller;
 
-import com.microservice.course.entities.Course;
+import com.library.entidades.jpa.entity.Course;
 import com.microservice.course.service.ICourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.microservice.student.service;
 
-import com.microservice.student.entities.Student;
+import com.library.entidades.jpa.entity.Student;
 import java.util.List;
 
 public interface IStudentService {

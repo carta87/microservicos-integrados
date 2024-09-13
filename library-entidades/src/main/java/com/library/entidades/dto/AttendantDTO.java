@@ -1,4 +1,4 @@
-package com.microservice.course.dto;
+package com.library.entidades.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentDTO {
-
+public class AttendantDTO {
     private String name;
     private String lastName;
     private String email;

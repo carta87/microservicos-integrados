@@ -1,8 +1,7 @@
 package com.microservice.course.service;
 
-import com.microservice.course.entities.Course;
-import com.microservice.course.htto.response.StudentByCourseResponse;
-
+import com.library.entidades.http.response.StudentByCourseResponse;
+import com.library.entidades.jpa.entity.Course;
 import java.util.List;
 
 public interface ICourseService {

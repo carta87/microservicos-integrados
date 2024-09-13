@@ -1,6 +1,6 @@
-package com.microservice.course.htto.response;
+package com.library.entidades.http.response;
 
-import com.microservice.course.dto.StudentDTO;
+import com.library.entidades.dto.StudentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,6 @@
 package com.microservice.student.repository;
 
-import com.microservice.student.entities.Student;
+import com.library.entidades.jpa.entity.Student;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
