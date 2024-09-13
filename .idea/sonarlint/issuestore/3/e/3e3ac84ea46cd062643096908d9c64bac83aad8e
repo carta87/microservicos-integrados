@@ -1,2 +1,20 @@
 
-r	java:S106;"+Replace this use of System.out by a logger.(εΖΦϊÿÿÿÿ8ϋρ†¶2J$a07a186b-1b7a-4552-b890-263d72278ff7
+~	java:S125"<This block of commented-out lines of code should be removed.(…£Ò8«¬Εά2J$846bcb4e-a83e-4b56-96da-4cdc2220ec73
+{
+java:S1128"8Remove this unused import 'net.sf.jasperreports.engine'.(ϊΝÒ8­¬Εά2J$637eeec9-d0fc-43f9-a285-76518e827e25
+
+java:S1128"GRemove this unused import 'org.springframework.boot.CommandLineRunner'.(Θ—ÿΕ8­¬Εά2J$7de43a1b-76f1-4a5c-86de-a42770f1e4aa
+‹
+java:S1128	"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚ξ‰ή8®¬Εά2J$f7195965-6929-4abf-9041-02be035e987d
+l
+java:S1128")Remove this unused import 'java.io.File'.(†Π¥Ε8®¬Εά2J$57c0e828-2d65-46cb-98f1-191b84a024c8
+t
+java:S1128"1Remove this unused import 'java.math.BigDecimal'.(κκ8®¬Εά2J$ae2f32b4-9ab0-40ce-ba0e-63df01a0e767
+|
+java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(ζΓ§ƒόÿÿÿÿ8®¬Εά2J$30d123dd-1f4d-4447-aa54-c81de9e8b7a6
+‚
+java:S1128"?Remove this unused import 'java.time.format.DateTimeFormatter'.(‰χχª8®¬Εά2J$493aaa6e-cf7f-43fc-ac46-05a30edbed61
+v
+java:S1128".Remove this unused import 'java.util.HashMap'.(™”€ωÿÿÿÿ8®¬Εά2J$fa40b539-e386-4b75-bb51-b36168c8f9cb
+r
+java:S1128"*Remove this unused import 'java.util.Map'.(Όθ½Òώÿÿÿÿ8®¬Εά2J$c5c7fba0-bd7a-4e2c-b50f-acd9b5ec67ed

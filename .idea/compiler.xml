@@ -9,10 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-gateway" />
         <module name="microservice-student" />
-        <module name="microservice-course" />
-        <module name="microservice-eureka" />
         <module name="microservice-report" />
         <module name="microservice-config" />
+        <module name="library-entidades" />
+        <module name="microservice-course" />
+        <module name="microservice-eureka" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -23,6 +24,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Spring-Boot-Jasper-Report" options="-parameters" />
+      <module name="library-entidades" options="-parameters" />
       <module name="microservice-config" options="-parameters" />
       <module name="microservice-course" options="-parameters" />
       <module name="microservice-eureka" options="-parameters" />
