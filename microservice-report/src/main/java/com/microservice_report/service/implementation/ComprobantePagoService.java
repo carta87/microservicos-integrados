@@ -1,6 +1,7 @@
-package com.microservice_report.service;
+package com.microservice_report.service.implementation;
 
 import com.library.entidades.dto.StudentDTO;
+import com.microservice_report.service.IComprobantePagoService;
 import com.microservice_report.utils.ConstantesReportes;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

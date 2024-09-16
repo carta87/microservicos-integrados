@@ -1,20 +1,22 @@
-package com.microservice.student.service;
+package com.microservice.student.service.implementation;
 
 import com.library.entidades.dto.AttendantDTO;
 import com.library.entidades.dto.StudentDTO;
 import com.library.entidades.jpa.entity.Student;
 import com.microservice.student.client.ReporteClient;
 import com.microservice.student.repository.IStudendRepository;
+import com.microservice.student.service.IStudentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class StudentService implements IStudentService{
+public class StudentService implements IStudentService {
 
     private final IStudendRepository iStudendRepository;
     private final ReporteClient reporteClient;
@@ -45,7 +47,23 @@ public class StudentService implements IStudentService{
     }
 
     @Override
-    public List<Student> findByIdCourse(Long idCourse) {
-        return iStudendRepository.findAllStudent(idCourse);
+    public List<StudentDTO> findByIdCourse(Long idCourse) {
+        List<StudentDTO> studentDTOList = new ArrayList<>();
+
+        iStudendRepository.findAllStudent(idCourse).forEach(student -> {
+            StudentDTO elemento = StudentDTO.builder()
+                    .name(student.getName())
+                    .email(student.getEmail())
+                    .attendantDTO(AttendantDTO.builder()
+                            .courseId(student.getAttendant().getId())
+                            .name(student.getAttendant().getName())
+                            .lastName(student.getAttendant().getName())
+                            .email(student.getAttendant().getEmail())
+                            .build())
+                    .build();
+            studentDTOList.add(elemento);
+        });
+        return studentDTOList;
+
     }
 }

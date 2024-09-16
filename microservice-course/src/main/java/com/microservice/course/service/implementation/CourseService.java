@@ -1,10 +1,11 @@
-package com.microservice.course.service;
+package com.microservice.course.service.implementation;
 
 import com.library.entidades.dto.StudentDTO;
 import com.library.entidades.http.response.StudentByCourseResponse;
 import com.library.entidades.jpa.entity.Course;
 import com.microservice.course.client.StudentClient;
 import com.microservice.course.repository.ICourseRepository;
+import com.microservice.course.service.ICourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CourseService implements ICourseService{
+public class CourseService implements ICourseService {
 
     private final ICourseRepository iCourseRepository;
     private final StudentClient studentClient;

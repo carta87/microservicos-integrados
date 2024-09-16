@@ -25,6 +25,4 @@ public class Attendant {
 
     private String email;
 
-    @OneToOne(mappedBy = "attendant", cascade = CascadeType.ALL)
-    private Student student;
 }
