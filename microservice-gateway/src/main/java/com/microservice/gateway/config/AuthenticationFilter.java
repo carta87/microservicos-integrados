@@ -1,5 +1,6 @@
 package com.microservice.gateway.config;
 
+import com.microservice.gateway.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -11,6 +12,9 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 
     @Autowired
     private RouteValidator validator;
+
+    @Autowired
+    private JwtUtil jwtUtil;
     public AuthenticationFilter() {
         super(Config.class);
     }
@@ -31,7 +35,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 try {
 //                    //REST call to AUTH service
 //                    template.getForObject("http://IDENTITY-SERVICE//validate?token" + authHeader, String.class);
-                    //   jwtUtil.validateToken(authHeader);
+                     jwtUtil.validateToken(authHeader);
 
                 } catch (Exception e) {
                     System.out.println("invalid access...!");
