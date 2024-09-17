@@ -28,6 +28,12 @@ spring:
             - Path=/auth/**
           filters:
             - AuthenticationFilter
+        - id: authtesting
+          uri: http://localhost:8092
+          predicates:
+            - Path=/test/**
+          filters:
+            - AuthenticationFilter
 eureka:
   instance:
     hostname: localhost
