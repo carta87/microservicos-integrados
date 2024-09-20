@@ -1,6 +1,7 @@
 package com.microservice.auth.jwt;
 
-import com.microservice.auth.jpa.entity.UserEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.microservice.auth.service.implementacion.UserDetailServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,20 +11,22 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
-    private final UserDetailsService userDetailsService;
+    private final JwtUtil jwtUtil;
+    //private final UserDetailsService userDetailsService;
+    private final UserDetailServiceImpl userDetailService;
 
 
     @Override
@@ -36,11 +39,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        username = jwtService.getUsernameFromToken(token);
+        username = jwtUtil.getUsernameFromToken(token);
 
         if(username !=null && SecurityContextHolder.getContext().getAuthentication() ==null){
-            UserDetails userEntity = userDetailsService.loadUserByUsername(username);
-            if(jwtService.validateToken(token, userEntity)){
+            UserDetails userEntity = userDetailService.loadUserByUsername(username);
+            if(jwtUtil.validateToken(token, userEntity)){
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userEntity,
                         null,

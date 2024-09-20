@@ -1,5 +1,5 @@
 package com.microservice.auth.jpa.entity;
 
-public enum Role {
+public enum RoleEnum {
     ADMIN, USER;
 }

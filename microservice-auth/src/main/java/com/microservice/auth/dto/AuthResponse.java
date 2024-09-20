@@ -1,5 +1,6 @@
 package com.microservice.auth.dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonPropertyOrder({"username", "message", "status", "token"})
 public class AuthResponse {
 
+    private String username;
     private String token;
+    private String message;
+    private boolean status;
 }

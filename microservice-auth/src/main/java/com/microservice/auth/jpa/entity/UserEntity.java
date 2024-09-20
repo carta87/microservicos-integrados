@@ -1,28 +1,29 @@
 package com.microservice.auth.jpa.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+/**
+ * esta entidad contiene la segunda version para almacenar usuario y por separado tendra roles
+ */
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_name"})})
-public class UserEntity implements UserDetails {
+@Table(name = "users")
+public class UserEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(name = "user_name", unique = true)
     private String username;
 
     @Column(name = "last_name")
@@ -33,35 +34,26 @@ public class UserEntity implements UserDetails {
 
     private String country;
 
+    @Email
     private String email;
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @Column(name = "is_enable")
+    private boolean isEnable;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
+    @Column(name = "account_no_expired")
+    private boolean accountNoExpired;
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+    @Column(name = "account_no_locked")
+    private boolean accountNoLocked;
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+    @Column(name = "credential_no_expired")
+    private boolean credentialNoExpired;
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
+    @ManyToMany(fetch = FetchType.EAGER, targetEntity =RoleEntity.class, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleEntity> roles = new HashSet<>();
 }
