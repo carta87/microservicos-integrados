@@ -1,7 +1,7 @@
 package com.microservice.auth.controller;
 
-import com.microservice.auth.Exception.NotUsernameFoundException;
-import com.microservice.auth.dto.ErrorDTO;
+import com.library.entidades.dto.ErrorDTO;
+import com.microservice.auth.exception.NotUsernameFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,7 +61,8 @@ public class AdviceController {
             errorDTO.setMessage("datos incompletos falta username");
         }else if (ex.getMessage().contains("default message [password]]")){
             errorDTO.setMessage("datos incompletos falta contraseña");
-        }else if (ex.getMessage().contains("default message [email]]")){
+        }else if (ex.getMessage().contains("default message [email]]") || ex.getMessage().contains(
+                "default message [debe ser una dirección de correo electrónico con formato correcto]]")){
             errorDTO.setMessage("datos incompletos falta email");
         }else if (ex.getMessage().contains("default message [firsName]]")){
             errorDTO.setMessage("datos incompletos falta firsName");

@@ -26,10 +26,18 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilter(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
+                .cors(cors -> cors.disable())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(http ->
-                    http.requestMatchers("/auth/**").permitAll()
-                            .anyRequest().authenticated())
+                .authorizeHttpRequests(http ->{
+                    //http.requestMatchers("/auth/**").permitAll(); cuando llamo un controlador
+                    http.requestMatchers("/register/**").permitAll();
+                    http.requestMatchers("/login/**").permitAll();
+                    http.requestMatchers("/v3/api-docs/**").permitAll();
+                    http.requestMatchers("/swagger-ui/**").permitAll();
+                    http.requestMatchers("/swagger-resources/**").permitAll();
+                    http.requestMatchers("/webjars/**").permitAll();
+                    http.anyRequest().authenticated();
+                })
                 //.formLogin(Customizer.withDefaults())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

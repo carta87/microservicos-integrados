@@ -1,5 +1,6 @@
 server:
   port: 9090
+  forward-headers-strategy: framework
 
 spring:
   application:
@@ -21,3 +22,17 @@ eureka:
   client:
     service-url:
       defaultZooServer: http://localhost:8761/eureka
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: TRACE
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    version: openapi_3_1
+  cache:
+    disabled: true

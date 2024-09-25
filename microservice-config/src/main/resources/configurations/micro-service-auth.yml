@@ -1,10 +1,17 @@
 
 server:
   port: 8092
+  forward-headers-strategy: framework
+
+jw:
+  secret:
+    key: 586E3272357538782F413F4428472B4B6250655368566B597033733676397924
+  time:
+    expriration: 600000
 
 spring:
   application:
-    name: microservice-auth
+    name: micro-service-auth
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/secure_micro_services_DB
@@ -22,3 +29,10 @@ eureka:
   client:
     service-url:
       defaultZooServer: http://localhost:8761/eureka
+
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    version: openapi_3_1
+  cache:
+    disabled: true

@@ -1,10 +1,5 @@
-jw:
-  secret:
-    key: 586E3272357538782F413F4428472B4B6250655368566B597033733676397924
-  time:
-    expriration: 600000
 spring:
   application:
-    name: microservice-auth
+    name: micro-service-auth
   config:
     import: optional:configserver:http://localhost:8888

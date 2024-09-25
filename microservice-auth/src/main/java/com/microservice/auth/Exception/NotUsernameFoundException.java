@@ -1,4 +1,4 @@
-package com.microservice.auth.Exception;
+package com.microservice.auth.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
