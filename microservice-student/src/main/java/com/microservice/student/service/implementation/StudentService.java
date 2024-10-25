@@ -2,7 +2,7 @@ package com.microservice.student.service.implementation;
 
 import com.library.entidades.dto.AttendantDTO;
 import com.library.entidades.dto.StudentDTO;
-import com.library.entidades.jpa.entity.Student;
+import com.library.entidades.jpa.entity.StudentEntity;
 import com.microservice.student.client.ReporteClient;
 import com.microservice.student.mapper.StudentMapper;
 import com.microservice.student.repository.IStudendRepository;
@@ -27,7 +27,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public List<StudentDTO> findAll() {
-        return studentMapper.mapToDto((List<Student>) iStudendRepository.findAll());
+        return studentMapper.mapToDto((List<StudentEntity>) iStudendRepository.findAll());
     }
 
     @Override
@@ -53,17 +53,17 @@ public class StudentService implements IStudentService {
     @Override
     public List<StudentDTO> findByIdCourse(Long idCourse) {
         List<StudentDTO> studentDTOList = new ArrayList<>();
-        iStudendRepository.findAllStudent(idCourse).forEach(student ->
+        iStudendRepository.findAllStudent(idCourse).forEach(studentEntity ->
             studentDTOList.add(StudentDTO.builder()
-                    .name(student.getName())
-                    .lastName(student.getLastName())
-                    .email(student.getEmail())
-                    .courseNumber(student.getCourseNumber())
+                    .name(studentEntity.getName())
+                    .lastName(studentEntity.getLastName())
+                    .email(studentEntity.getEmail())
+                    .courseNumber(studentEntity.getCourseNumber())
                     .attendant(AttendantDTO.builder()
-                            .id(student.getAttendant().getId())
-                            .name(student.getAttendant().getName())
-                            .lastName(student.getAttendant().getLastName())
-                            .email(student.getAttendant().getEmail())
+                            .id(studentEntity.getAttendant().getId())
+                            .name(studentEntity.getAttendant().getName())
+                            .lastName(studentEntity.getAttendant().getLastName())
+                            .email(studentEntity.getAttendant().getEmail())
                             .build())
                     .build()));
         return studentDTOList;
@@ -72,7 +72,7 @@ public class StudentService implements IStudentService {
     @Override
     @Transactional
     public boolean updateStudent(StudentDTO studentDTO) {
-        Optional<Student> existingStudent = iStudendRepository.findById(studentDTO.getId());
+        Optional<StudentEntity> existingStudent = iStudendRepository.findById(studentDTO.getId());
         if (existingStudent.isPresent()) {
             iStudendRepository.save(studentMapper.mapToEntity(studentDTO));
             return true;
@@ -82,7 +82,7 @@ public class StudentService implements IStudentService {
 
     @Override
     public boolean delete(Long id) {
-        Optional<Student> existingStudent = iStudendRepository.findById(id);
+        Optional<StudentEntity> existingStudent = iStudendRepository.findById(id);
         if (existingStudent.isPresent()) {
             iStudendRepository.delete(existingStudent.get());
             return true;

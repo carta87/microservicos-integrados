@@ -3,7 +3,7 @@ package com.microservice.course.service.implementation;
 import com.library.entidades.dto.CourseDTO;
 import com.library.entidades.dto.StudentDTO;
 import com.library.entidades.http.response.StudentByCourseResponse;
-import com.library.entidades.jpa.entity.Course;
+import com.library.entidades.jpa.entity.CourseEntity;
 import com.microservice.course.client.StudentClient;
 import com.microservice.course.exception.exception.DuplicateNumberCourseException;
 import com.microservice.course.mapper.CourseMapper;
@@ -26,12 +26,12 @@ public class CourseService implements ICourseService {
 
     @Override
     public List<CourseDTO> findAll() {
-        return courseMapper.mapToDto((List<Course>) iCourseRepository.findAll());
+        return courseMapper.mapToDto((List<CourseEntity>) iCourseRepository.findAll());
     }
 
     @Override
     public CourseDTO findById(Long id) {
-        return courseMapper.mapToDto(iCourseRepository.findById(id).orElse(new Course()));
+        return courseMapper.mapToDto(iCourseRepository.findById(id).orElse(new CourseEntity()));
     }
 
     @Override
@@ -58,15 +58,15 @@ public class CourseService implements ICourseService {
     public StudentByCourseResponse findStudentsByNumberCourse(Long numberCourse) {
 
         //busqueda de los datos del curso
-        Course course = iCourseRepository.findByNumberCourse(numberCourse).orElse(new Course());
+        CourseEntity courseEntity = iCourseRepository.findByNumberCourse(numberCourse).orElse(new CourseEntity());
 
         //obtener los estudiantes del curso
         List<StudentDTO> students = studentClient.findAllStudentByCourse(numberCourse);
 
         //construir el response
         return StudentByCourseResponse.builder()
-                .courseName(course.getName())
-                .teacher(course.getTeacher())
+                .courseName(courseEntity.getName())
+                .teacher(courseEntity.getTeacher() == null ? "": courseEntity.getTeacher())
                 .studentDTOList(students)
                 .build();
     }

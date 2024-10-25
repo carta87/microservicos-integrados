@@ -1,16 +1,16 @@
 package com.microservice.course.mapper;
 
 import com.library.entidades.dto.CourseDTO;
-import com.library.entidades.jpa.entity.Course;
+import com.library.entidades.jpa.entity.CourseEntity;
 import org.mapstruct.Mapper;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CourseMapper {
 
-    List<CourseDTO> mapToDto(List<Course> courseList);
+    List<CourseDTO> mapToDto(List<CourseEntity> courseEntityList);
 
-    CourseDTO mapToDto(Course course);
+    CourseDTO mapToDto(CourseEntity courseEntity);
 
-    Course mapToEntity(CourseDTO courseDTO);
+    CourseEntity mapToEntity(CourseDTO courseDTO);
 }

@@ -57,9 +57,10 @@ public class MicroserviceAuthApplication {
 						.build();
 
 				/* CREATE USERS */
-				UserEntity userSantiago = UserEntity.builder()
-						.username("santiago")
-						.password("$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6")
+				UserEntity admin = UserEntity.builder()
+						.username("admin")
+						.email("admin@hotmail.com")
+						.password(passwordEncoder.encode("admin"))
 						.isEnable(Boolean.TRUE)
 						.accountNoExpired(Boolean.TRUE)
 						.accountNoLocked(Boolean.TRUE)
@@ -67,9 +68,10 @@ public class MicroserviceAuthApplication {
 						.roles(Set.of(roleAdmin))
 						.build();
 
-				UserEntity userDaniel = UserEntity.builder()
-						.username("daniel")
-						.password("$2a$10$cMY29RPYoIHMJSuwRfoD3eQxU1J5Rww4VnNOUOAEPqCBshkNfrEf6")
+				UserEntity user = UserEntity.builder()
+						.username("user")
+						.email("user@hotmail.com")
+						.password(passwordEncoder.encode("user"))
 						.isEnable(Boolean.TRUE)
 						.accountNoExpired(Boolean.TRUE)
 						.accountNoLocked(Boolean.TRUE)
@@ -77,8 +79,9 @@ public class MicroserviceAuthApplication {
 						.roles(Set.of(roleUser))
 						.build();
 
-				UserEntity userAndrea = UserEntity.builder()
-						.username("andrea")
+				UserEntity userCarlos = UserEntity.builder()
+						.username("carlos")
+						.email("carlos@hotmail.com")
 						.password(passwordEncoder.encode("1234"))
 						.isEnable(Boolean.TRUE)
 						.accountNoExpired(Boolean.TRUE)
@@ -86,17 +89,7 @@ public class MicroserviceAuthApplication {
 						.credentialNoExpired(Boolean.TRUE)
 						.roles(Set.of(roleAdmin))
 						.build();
-
-				UserEntity userAnyi = UserEntity.builder()
-						.username("angui")
-						.password(passwordEncoder.encode("1234"))
-						.isEnable(Boolean.TRUE)
-						.accountNoExpired(Boolean.TRUE)
-						.accountNoLocked(Boolean.TRUE)
-						.credentialNoExpired(Boolean.TRUE)
-						.roles(Set.of(roleUser))
-						.build();
-				userRepository.saveAll(List.of(userSantiago, userDaniel, userAndrea, userAnyi));
+				userRepository.saveAll(List.of(admin, user, userCarlos));
 			}
 		};
 	}
