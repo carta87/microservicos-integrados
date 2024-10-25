@@ -17,6 +17,11 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "number_course")
+    private Long numberCourse;
+
     private String name;
+
     private String teacher;
 }

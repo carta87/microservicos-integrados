@@ -3,7 +3,6 @@ package com.microservice.auth.jpa.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
-
 import java.util.HashSet;
 import java.util.Set;
 

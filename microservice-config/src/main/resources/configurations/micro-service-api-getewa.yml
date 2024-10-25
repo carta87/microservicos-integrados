@@ -13,19 +13,22 @@ spring:
       discovery:
         locator:
           enabled: true
-      global-filters:
-        - name: AddResponseHeader
-          args:
-            name: Access-Control-Allow-Origin
-            value: "*"
-        - name: AddResponseHeader
-          args:
-            name: Access-Control-Allow-Methods
-            value: "GET, POST, PUT, DELETE, OPTIONS"
-        - name: AddResponseHeader
-          args:
-            name: Access-Control-Allow-Headers
-            value: "Content-Type, Authorization"
+      global-cors:
+        cors-configurations:
+          '[/**]': &global-cors-config
+            allowedOrigins:
+              - "http://localhost:4200"
+              - "http://localhost:8080"
+              - "http://localhost:8092"
+            allowedMethods: "GET, POST, PUT, DELETE, OPTIONS"
+            allowedHeaders: "Content-Type, Authorization, Accept"
+            allowCredentials: "true"
+          '/micro-services/student-micro/**':
+            <<: *global-cors-config
+          '/micro-services/course-micro/**':
+            <<: *global-cors-config
+          '/micro-services/auth-micro/**':
+            <<: *global-cors-config
       routes:
         - id: student-micro-service
           uri: http://localhost:8090

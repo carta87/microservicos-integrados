@@ -35,9 +35,4 @@ public final class ConstantesReportes {
 
     public static final String REPORTE_EXITOSO = "Creacion de reporte exitoso";
     public static final String REPORTE_FALLIDO = "Creacion de reporte fallida";
-
-
-
-
-
 }

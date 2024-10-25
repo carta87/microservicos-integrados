@@ -2,6 +2,7 @@ package com.microservice.student.client;
 
 import com.library.entidades.dto.StudentDTO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -9,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface ReporteClient {
 
     @PostMapping(path = "reports/comprobantePago")
-    String reporteComprobante(@RequestBody StudentDTO studentDTO);
+    ResponseEntity<byte[]> reporteComprobante(@RequestBody StudentDTO studentDTO);
 }

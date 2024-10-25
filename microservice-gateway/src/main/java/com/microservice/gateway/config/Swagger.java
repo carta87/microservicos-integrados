@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Lazy;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import static org.springdoc.core.utils.Constants.DEFAULT_API_DOCS_URL;
 
 @Configuration

@@ -1,4 +1,4 @@
-package com.microservice.auth.exception;
+package com.microservice.auth.exception.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 @Data
 public class NotUsernameFoundException extends RuntimeException{
 
-    private HttpStatus httpStatus;
+    private final HttpStatus httpStatus;
     public NotUsernameFoundException(String message, HttpStatus httpStatus) {
         super(message);
         this.httpStatus = httpStatus;

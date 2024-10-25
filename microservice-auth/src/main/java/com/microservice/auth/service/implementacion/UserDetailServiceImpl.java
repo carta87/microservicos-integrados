@@ -1,6 +1,6 @@
 package com.microservice.auth.service.implementacion;
 
-import com.microservice.auth.exception.NotUsernameFoundException;
+import com.microservice.auth.exception.exception.NotUsernameFoundException;
 import com.microservice.auth.jpa.entity.UserEntity;
 import com.microservice.auth.jpa.repository.IUserRepository;
 import lombok.RequiredArgsConstructor;

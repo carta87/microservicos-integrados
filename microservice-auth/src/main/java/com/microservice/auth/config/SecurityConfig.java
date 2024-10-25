@@ -4,6 +4,7 @@ import com.microservice.auth.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.Customizer;
@@ -14,6 +15,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker;
+import org.springframework.web.cors.CorsConfiguration;
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -25,25 +29,34 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilter(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity
-                .cors(cors -> cors.disable())
+        httpSecurity
+               /* .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.setAllowCredentials(true);
+                    config.setAllowedOrigins(Collections.singletonList("http://localhost:4200")); // Update as necessary
+                    config.setAllowedHeaders(Arrays.asList("Content-Type", "Authorization", "Accept"));
+                    config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    config.setAllowCredentials(true);
+                    return config;
+                }))*/
+                //.cors(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(http ->{
-                    //http.requestMatchers("/auth/**").permitAll(); cuando llamo un controlador
+                .authorizeHttpRequests(http -> {
                     http.requestMatchers("/register/**").permitAll();
                     http.requestMatchers("/login/**").permitAll();
                     http.requestMatchers("/v3/api-docs/**").permitAll();
                     http.requestMatchers("/swagger-ui/**").permitAll();
                     http.requestMatchers("/swagger-resources/**").permitAll();
                     http.requestMatchers("/webjars/**").permitAll();
+                    http.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
                     http.anyRequest().authenticated();
                 })
-                //.formLogin(Customizer.withDefaults())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .build();
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return httpSecurity.build();
     }
     @Bean
     public CompromisedPasswordChecker compromisedPasswordChecker() {

@@ -24,8 +24,8 @@ public class Student {
 
     private String email;
 
-    @Column(name = "course_id")
-    private Long courseId;
+    @Column(name = "course_number")
+    private Long courseNumber;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "attendant_id")

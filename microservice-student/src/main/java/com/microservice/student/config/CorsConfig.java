@@ -1,12 +1,10 @@
-package com.microservice.student.config;
+/*package com.microservice.student.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * Clase que define las reglas generales para CORS.
- */
+
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
     @Override
@@ -17,3 +15,4 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedHeaders("Content-Type", "Authorization");
     }
 }
+*/

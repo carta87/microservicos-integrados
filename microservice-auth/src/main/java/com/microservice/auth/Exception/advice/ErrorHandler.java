@@ -1,7 +1,7 @@
-package com.microservice.auth.controller;
+package com.microservice.auth.exception.advice;
 
 import com.library.entidades.dto.ErrorDTO;
-import com.microservice.auth.exception.NotUsernameFoundException;
+import com.microservice.auth.exception.exception.NotUsernameFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class AdviceController {
+public class ErrorHandler {
 
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ErrorDTO> runtimeEceptionHandler(RuntimeException ex){

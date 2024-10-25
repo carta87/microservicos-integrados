@@ -4,7 +4,6 @@ import com.microservice.auth.jpa.entity.RoleEntity;
 import com.microservice.auth.jpa.entity.RoleEnum;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
 import java.util.Optional;
 
 @Repository

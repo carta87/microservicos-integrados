@@ -1,16 +1,20 @@
 package com.microservice.course.service;
 
+import com.library.entidades.dto.CourseDTO;
 import com.library.entidades.http.response.StudentByCourseResponse;
-import com.library.entidades.jpa.entity.Course;
 import java.util.List;
 
 public interface ICourseService {
 
-    List<Course> findAll();
+    List<CourseDTO> findAll();
 
-    Course findById(Long id);
+    CourseDTO findById(Long id);
 
-    void save (Course course);
+    void save (CourseDTO course);
 
-    StudentByCourseResponse findStudentsByIdCourse(Long idCourse);
+    void update(CourseDTO course);
+
+    StudentByCourseResponse findStudentsByNumberCourse(Long numberCourse);
+
+    void deleteById(Long id);
 }

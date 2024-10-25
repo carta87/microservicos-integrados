@@ -2,7 +2,6 @@ package com.microservice.auth.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Objects;
 
 @Builder

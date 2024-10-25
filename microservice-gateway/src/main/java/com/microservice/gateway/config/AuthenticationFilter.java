@@ -1,11 +1,16 @@
 package com.microservice.gateway.config;
 
+import com.microservice.gateway.exception.exception.JwtException;
 import com.microservice.gateway.util.JwtUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import java.util.Objects;
 
+@Slf4j
 @Component
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config> {
 
@@ -33,10 +38,10 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
             if (validator.isSecured.test(exchange.getRequest())) {
                 //header contains token or not
                 if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
-                    throw new RuntimeException("missing authorization header");
+                    throw new JwtException("falta encabezado de autorización", HttpStatus.FORBIDDEN);
                 }
 
-                String authHeader = exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
+                String authHeader = Objects.requireNonNull(exchange.getRequest().getHeaders().get(HttpHeaders.AUTHORIZATION)).get(0);
                 if (authHeader != null && authHeader.startsWith("Bearer ")) {
                     authHeader = authHeader.substring(7);
                 }
@@ -46,8 +51,8 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                      jwtUtil.validateToken(authHeader);
 
                 } catch (Exception e) {
-                    System.out.println("invalid access...!");
-                    throw new RuntimeException("un authorized access to application");
+                    log.info("invalid access...!");
+                    throw new JwtException("no autorizado al validar jwt", HttpStatus.FORBIDDEN);
                 }
             }
             return chain.filter(exchange);

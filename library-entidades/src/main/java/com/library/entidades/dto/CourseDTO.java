@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CourseDTO {
 
+    private Long id;
+    private Long numberCourse;
     private String name;
     private String teacher;
 }

@@ -20,15 +20,15 @@ public class JwtUtil {
     @Value("${jw.secret.key}")
     private String secretKey;
 
-    @Value("${jw.time.expriration}")
+    @Value("${jw.time.expiration}")
     private String timeExpiration;
 
     public String getToken(UserEntity userEntity) {
-        return genrateAccesToken(new HashMap<>(), userEntity);
+        return generateAccesToken(new HashMap<>(), userEntity);
 
     }
 
-    private String genrateAccesToken(HashMap<String, Object> extraClaims, UserEntity userEntity) {
+    private String generateAccesToken(HashMap<String, Object> extraClaims, UserEntity userEntity) {
         return Jwts
                 .builder()
                 .setClaims(extraClaims)
@@ -66,7 +66,6 @@ public class JwtUtil {
     public boolean validateToken(String token, UserDetails userEntity) {
         return !isTokenExpired(token) &&
                 getUsernameFromToken(token).equals(userEntity.getUsername());
-
     }
 
     public boolean isTokenExpired(String token) {
